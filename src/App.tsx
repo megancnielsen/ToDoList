@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { TodoList } from "./components/Todolist";
+import { Todo } from "./components/types";
+import AddTodoForm from './components/inputBox';
 
-function App() {
+const initTodos: Array<Todo> = [
+  { item: "Run the dog", complete: true },
+  { item: "Finish Tabs assignment", complete: false },
+];
+
+const App: React.FC = () => {
+  const [todos, setTodos] = useState(initTodos);
+
+  const toggleTodo = (selectedTodo: Todo) => {
+    const newTodos = todos.map(todo => {
+      if (todo === selectedTodo) {
+        return {
+          ...todo,
+          complete: !todo.complete
+        }
+      }
+      return todo;
+    })
+    setTodos(newTodos);
+  }
+
+  const addTodo = ( newTodo: string ) => {
+    setTodos([...todos, { item: newTodo, complete: false }])
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <React.Fragment>
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
+      <AddTodoForm addTodo={addTodo}/>
+    </React.Fragment>
     </div>
-  );
-}
+  )
+};
 
 export default App;

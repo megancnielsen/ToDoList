@@ -7,7 +7,7 @@ interface AddTodoProps {
 
 const AddTodoForm: React.FC<AddTodoProps> = ({ addTodo }) => {
     const [newTodo, setNewTodo] = useState<string>("");
-
+    console.log("I am todo component, am I reloading?")
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setNewTodo(e.target.value);
     }

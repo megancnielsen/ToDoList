@@ -12,6 +12,8 @@ const initTodos: Array<Todo> = [
 const App: React.FC = () => {
   const [todos, setTodos] = useState(initTodos);
 
+  console.log("Am i reloading?")
+
   const toggleTodo = (selectedTodo: Todo) => {
     const newTodos = todos.map(todo => {
       if (todo === selectedTodo) {
@@ -25,17 +27,15 @@ const App: React.FC = () => {
     setTodos(newTodos);
   }
 
-  const addTodo = ( newTodo: string ) => {
+  const addTodo = (newTodo: string) => {
     setTodos([...todos, { item: newTodo, complete: false }])
   }
 
   return (
-    <div className="App">
-    <React.Fragment>
-      <TodoList todos={todos} toggleTodo={toggleTodo} />
-      <AddTodoForm addTodo={addTodo}/>
-    </React.Fragment>
-    </div>
+      <React.Fragment>
+        <TodoList todos={todos} toggleTodoFn={toggleTodo} />  
+        <AddTodoForm addTodo={addTodo}/>
+      </React.Fragment>
   )
 };
 

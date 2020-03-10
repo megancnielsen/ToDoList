@@ -3,15 +3,15 @@ import { Todo } from "./types";
 
 export interface ListProps {
     todo: Todo;
-    toggleTodo: (selectedTodo: Todo) => any;
+    toggleTodoFML: (selectedTodo: Todo) => any;
 }
 
-export const ToDoListItem: React.FC<ListProps> = ({ todo, toggleTodo })=> {
+export const ToDoListItem: React.FC<ListProps> = ({ todo, toggleTodoFML })=> {
     return (
         <li>
             <label style={{textDecoration: todo.complete ? "line-through" : undefined}}>
                 <input type="checkbox" checked={todo.complete}
-                onChange={() => toggleTodo(todo)} />
+                onChange={() => toggleTodoFML(todo)} />
                 {todo.item}
             </label>
         </li>
